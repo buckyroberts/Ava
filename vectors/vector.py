@@ -17,3 +17,11 @@ class Vector:
         v.dx = v1.dx + v2.dx
         v.dy = v1.dy + v2.dy
         return v
+
+    @staticmethod
+    def sum(vectors):
+        v = Vector(vectors[0].x, vectors[0].y)
+        for vector in vectors:
+            v.dx += vector.dx
+            v.dy += vector.dy
+        return v
