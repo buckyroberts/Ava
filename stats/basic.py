@@ -16,7 +16,11 @@ def median(values):
         return (sorted_values[middle-1] + sorted_values[middle]) / 2
 
 
-wings_eaten = [7, 21, 13, 16, 14, 20, 13, 16, 18, 14,
+def data_range(values):
+    return max(values) - min(values)
+
+
+wings_eaten = [7, 23, 13, 16, 14, 20, 13, 16, 18, 14,
                8, 14, 12, 12, 16, 15, 16, 9, 15, 7]
 
 wing_counts = Counter(wings_eaten)
@@ -33,6 +37,7 @@ print('Best: ' + str(max(wings_eaten)))
 print('Worst: ' + str(min(wings_eaten)))
 print('Average: ' + str(mean(wings_eaten)))
 print('Median: ' + str(median(wings_eaten)))
+print('Range: ' + str(data_range(wings_eaten)))
 
 plt.bar(x, y)
 plt.axis([0, 25, 0, 5])
