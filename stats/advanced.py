@@ -1,3 +1,4 @@
+import math
 
 
 def mean(values):
@@ -11,7 +12,7 @@ def median(values):
     if num % 2 == 1:
         return sorted_values[middle]
     else:
-        return (sorted_values[middle-1] + sorted_values[middle]) / 2
+        return (sorted_values[middle - 1] + sorted_values[middle]) / 2
 
 
 def data_range(values):
@@ -26,15 +27,28 @@ def deviation_mean(values):
     return results
 
 
+def standard_deviation(values):
+    return math.sqrt(variance(values))
+
+
 def variance(values):
     squared_deviations = []
     for d in deviation_mean(values):
-        squared_deviations.append(d*d)
+        squared_deviations.append(d * d)
     return mean(squared_deviations)
 
 
-wings_eaten = [2, 4, 6]
+def covariance(a, b):
+    n = len(a)
+    a = deviation_mean(a)
+    b = deviation_mean(b)
+    total = 0
+    for i in range(n):
+        total += a[i] * b[i]
+    return total / (n - 1)
 
-print('Sample size: ' + str(len(wings_eaten)))
-print('Average: ' + str(mean(wings_eaten)))
-print('Variance: ' + str(variance(wings_eaten)))
+
+x = [12, 30, 15, 24, 14, 18, 28, 26, 19, 27]
+y = [20, 60, 27, 50, 21, 30, 61, 54, 32, 57]
+
+print(covariance(x, y))
