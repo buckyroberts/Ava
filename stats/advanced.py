@@ -18,13 +18,23 @@ def data_range(values):
     return max(values) - min(values)
 
 
-def de_mean(values):
+def deviation_mean(values):
     results = []
     avg = mean(values)
-    for v in values:
-        results.append(v - avg)
+    for value in values:
+        results.append(value - avg)
     return results
 
 
-wings_eaten = [3, 4, 5]
-print(de_mean(wings_eaten))
+def variance(values):
+    squared_deviations = []
+    for d in deviation_mean(values):
+        squared_deviations.append(d*d)
+    return mean(squared_deviations)
+
+
+wings_eaten = [2, 4, 6]
+
+print('Sample size: ' + str(len(wings_eaten)))
+print('Average: ' + str(mean(wings_eaten)))
+print('Variance: ' + str(variance(wings_eaten)))
