@@ -1,19 +1,6 @@
 import math
 import statistics
-
-
-def median(values):
-    num = len(values)
-    sorted_values = sorted(values)
-    middle = num // 2
-    if num % 2 == 1:
-        return sorted_values[middle]
-    else:
-        return (sorted_values[middle - 1] + sorted_values[middle]) / 2
-
-
-def data_range(values):
-    return max(values) - min(values)
+from matplotlib import pyplot as plt
 
 
 def deviation_mean(values):
@@ -60,7 +47,12 @@ def square_list(values):
     return [i ** 2 for i in values]
 
 
-x = [14.2, 16.4, 11.9, 15.2, 18.5, 22.1, 19.4, 25.1, 23.4, 18.1, 22.6, 17.2]
-y = [215, 325, 185, 332, 406, 522, 412, 614, 544, 421, 445, 408]
+temperature = [14.2, 16.4, 11.9, 15.2, 18.5, 22.1, 19.4, 25.1, 23.4, 18.1, 22.6, 17.2]
+sales = [215, 325, 185, 332, 406, 522, 412, 614, 544, 421, 445, 408]
 
-print(correlation(x, y))
+plt.scatter(temperature, sales)
+
+plt.xlabel('Temperature')
+plt.ylabel('Sales')
+plt.title('Correlation ' + str(correlation(temperature, sales)))
+plt.show()
