@@ -1,8 +1,5 @@
 import math
-
-
-def mean(values):
-    return sum(values) / len(values)
+import statistics
 
 
 def median(values):
@@ -21,7 +18,7 @@ def data_range(values):
 
 def deviation_mean(values):
     results = []
-    avg = mean(values)
+    avg = statistics.mean(values)
     for value in values:
         results.append(value - avg)
     return results
@@ -35,7 +32,7 @@ def variance(values):
     squared_deviations = []
     for d in deviation_mean(values):
         squared_deviations.append(d * d)
-    return mean(squared_deviations)
+    return statistics.mean(squared_deviations)
 
 
 def covariance(a, b):
@@ -48,7 +45,22 @@ def covariance(a, b):
     return total / (n - 1)
 
 
-x = [12, 30, 15, 24, 14, 18, 28, 26, 19, 27]
-y = [20, 60, 27, 50, 21, 30, 61, 54, 32, 57]
+def correlation(a, b):
+    col_1 = sum(multiply_lists(deviation_mean(a), deviation_mean(b)))
+    col_2 = sum(square_list(deviation_mean(a)))
+    col_3 = sum(square_list(deviation_mean(b)))
+    return col_1 / math.sqrt(col_2 * col_3)
 
-print(covariance(x, y))
+
+def multiply_lists(a, b):
+    return [a * b for a, b in zip(a, b)]
+
+
+def square_list(values):
+    return [i ** 2 for i in values]
+
+
+x = [14.2, 16.4, 11.9, 15.2, 18.5, 22.1, 19.4, 25.1, 23.4, 18.1, 22.6, 17.2]
+y = [215, 325, 185, 332, 406, 522, 412, 614, 544, 421, 445, 408]
+
+print(correlation(x, y))
